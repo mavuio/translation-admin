@@ -22,9 +22,9 @@ class TranslationAdminController extends BaseController {
    \Orchestra\Asset::add('tinymce'                   , $base_path."/mysite/thirdparty/tinymce4/js/tinymce/tinymce.min.js");
    \Orchestra\Asset::add('ui-tinymce'                , $base_path."/mysite/thirdparty/ui-tinymce-0.0.4/src/tinymce.js");
 
-   \Orchestra\Asset::add('werkzeugh-translate'       , $base_path."/public/packages/werkzeugh/translation-admin/ng/translation-admin/js/translation-admin.js");
-   \Orchestra\Asset::add('werkzeugh-translate-index' , $base_path."/public/packages/werkzeugh/translation-admin/ng/translation-admin/directives/translation-admin-index.js");
-   \Orchestra\Asset::add('werkzeugh-translate-css'   , $base_path."/public/packages/werkzeugh/translation-admin/css/translation-admin.css");
+   \Orchestra\Asset::add('werkzeugh-translate'       , $base_path."/packages/werkzeugh/translation-admin/ng/translation-admin/js/translation-admin.js");
+   \Orchestra\Asset::add('werkzeugh-translate-index' , $base_path."/packages/werkzeugh/translation-admin/ng/translation-admin/directives/translation-admin-index.js");
+   \Orchestra\Asset::add('werkzeugh-translate-css'   , $base_path."/packages/werkzeugh/translation-admin/css/translation-admin.css");
 
 
  }
