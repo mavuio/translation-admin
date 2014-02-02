@@ -1,0 +1,52 @@
+@include establish-baseline;
+
+ 
+html {
+
+}
+
+body {
+    // Modernizr fallback for when there is no fontface support
+    font-family:$f-basefont;
+}
+
+h1 {
+  font-size:36px;font-weight:bold;
+}
+
+h2 {
+  font-size:32px;font-weight:bold;
+}
+
+h3 {
+  font-size:28px;font-weight:bold;
+}
+
+h4 {
+  font-size:22px;font-weight:bold;
+}
+
+h5 {
+  font-size:18px;font-weight:bold;
+}
+
+h6 {
+  font-size:16px;font-weight:bold;
+}
+
+// typopgraphy contentx-styles ---------- BEGIN
+
+.typography {
+  
+  @import "partials/typography";
+  
+}
+
+// typopgraphy contentx-styles ---------- END
+
+
+a:hover {
+ 
+ text-decoration:underline; 
+  
+}

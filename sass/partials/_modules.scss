@@ -1,0 +1,66 @@
+.wien-import-item {
+  
+  background:#eee;
+  border:1px solid #ccc;
+  border-radius:5px;
+  margin:2em 0;
+  padding:2em;
+  
+}
+
+.align-center{
+  text-align:center;
+}
+
+.align-right{
+  text-align:right;
+}
+
+.align-left{
+  text-align:left;
+}
+
+.fa.wien-loc {
+  color:#900;
+}
+
+.grey {
+  opacity:0.1;
+}
+
+.wien-import-item-container
+{
+  label {
+    display:block;
+    line-height:36px;
+    text-align:right;
+  
+    em {
+      font-style:normal;
+      background:#999;
+      color:#eee;
+      font-size:0.9em;
+      padding:0.3em;
+      margin-left:0.5em;
+      text-transform:uppercase;
+    }
+  
+  }
+  
+  .en label em {background:#99e;}
+
+
+  
+   .found-location ,.showtime {
+    border:1px solid #999;
+    padding:0.5em;
+    font-size:0.8em;
+    background:#bbf;
+    border-radius:3px;
+    margin:10px;
+    width:300px;
+    display:inline-block;
+    
+  }
+  
+}

@@ -1,0 +1,182 @@
+// Mixin for box-sizing
+// ====================================================================
+
+@mixin bs($bs-type: $defined-bs-type) {
+	-webkit-box-sizing: $bs-type;
+	-moz-box-sizing: $bs-type;
+	box-sizing: $bs-type;
+}
+
+// Mixin for creating pill shaped buttons
+// ====================================================================
+
+@mixin button-links($button-base: darken($color11,10%),$button-hover: darken($color11,15%)) {
+	border: 1px solid darken($color11,16%);
+	padding: .3em .6em;
+	margin-left: .7em;
+	@include border-radius(8px);
+	@include text-shadow(0 1px 2px $color11);
+	color: lighten($color10,50%);
+	background-color: $button-base;
+	&:hover {
+		background-color: $button-hover;
+	}
+}
+
+// ====================================================================
+
+@mixin mwPad($top,$bottom:null) {
+  
+  @if $bottom == null {
+       $bottom: $top;
+    }
+    
+  padding-top: rhythm($top);
+  padding-bottom: rhythm($bottom);
+  
+}
+
+// ====================================================================
+
+@mixin mwMargin($top,$bottom:null) {
+  
+  @if $bottom == null {
+       $bottom: $top;
+    }
+    
+  margin-top: rhythm($top);
+  margin-bottom: rhythm($bottom);
+  
+}
+
+
+// ====================================================================
+
+@mixin mwUnsliderSetup() {
+  
+  position: relative; 
+  overflow: auto;
+  > ul > li { 
+    list-style: none; 
+    float: left; 
+  }
+}
+
+
+
+
+// ====================================================================
+
+@mixin for_all_grids() {
+  
+  @include breakpoint($break-S) {
+    @include use-grid($grid-s) {
+      @content;
+    }
+  }
+  @include breakpoint($break-M) {
+    @include use-grid($grid-m) {
+      @content;
+    }
+  }
+  @include breakpoint($break-L) {
+    @include use-grid($grid-l) {
+      @content;
+    }
+  }
+
+}
+
+
+
+
+
+// ====================================================================
+
+@mixin mwSetupGridSpans()
+{
+  
+      .span-1 {
+         @include span(1 of 12);
+       }
+      .span-2 {
+         @include span(2 of 12);
+       }
+       .span-3 {
+         @include span(3 of 12);
+       }
+       .span-4 {
+         @include span(4 of 12);
+       }
+       .span-5 {
+         @include span(5 of 12);
+       }
+       .span-6 {
+         @include span(6 of 12);
+       }
+       .span-7 {
+         @include span(7 of 12);
+       }
+       .span-8 {
+         @include span(8 of 12);
+       }
+       .span-9 {
+         @include span(9 of 12);
+       }
+       .span-10 {
+         @include span(10 of 12);
+       }
+       .span-11 {
+         @include span(11 of 12);
+       }
+       .span-12 {
+         @include full(of 12);
+       }
+       
+       .omega { @include omega; }
+       .alpha { @include alpha; }
+      
+}
+
+@mixin mwSetupGridSpans11()
+{
+  
+      .span-1 {
+         @include span(1 of 11);
+       }
+      .span-2 {
+         @include span(2 of 11);
+       }
+       .span-3 {
+         @include span(3 of 11);
+       }
+       .span-4 {
+         @include span(4 of 11);
+       }
+       .span-5 {
+         @include span(5 of 11);
+       }
+       .span-6 {
+         @include span(6 of 11);
+       }
+       .span-7 {
+         @include span(7 of 11);
+       }
+       .span-8 {
+         @include span(8 of 11);
+       }
+       .span-9 {
+         @include span(9 of 11);
+       }
+       .span-10 {
+         @include span(10 of 11);
+       }
+       .span-11 {
+         @include full(of 11);
+       }
+       
+       .omega { @include omega; }
+       .alpha { @include alpha; }
+      
+}
+

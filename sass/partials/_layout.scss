@@ -1,0 +1,71 @@
+*{
+-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
+}
+
+//responsive img:
+
+img,
+embed, object, video {
+  max-width: 100%;
+}
+
+.relative {position:relative;}
+
+//$grid-default: 12 (69px 12px) after fluid border-box; //960 grid
+//$grid-default: 12 1/5 after fluid border-box;
+
+$grid-default: (
+    columns: 12,
+    gutters:0,
+    container:100%,
+);
+
+$subgrid-default: (
+    columns: 11,
+    gutters:1/5,
+    gutter-position: after,
+    container:100%,
+);
+
+
+@include set-grid($grid-default);
+
+
+body{
+ 
+ .main-outer {
+   max-width:1300px;
+   padding-left:1em;
+   padding-right:1em;
+   margin:0 auto;
+ } 
+ 
+}
+
+
+.row {
+  @include row();
+}
+
+*[class$="-container"] {
+	@include container(hide);
+  @include mwSetupGridSpans();
+  
+}
+
+
+
+*[class$="-subcontainer"] {
+  @include use_grid($subgrid-default)
+  {
+      @include container(hide);
+      @include mwSetupGridSpans11();
+  }
+}
+
+
+
+
+
+
+

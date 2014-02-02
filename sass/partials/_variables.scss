@@ -1,0 +1,43 @@
+$c-background:#ffffff;
+
+
+
+$c-color1: #222299;
+$c-gold:#dbc579;
+$c-text: #616161;
+$c-footer-bg: $c-text;
+$c-footer-fg: $c-gold;
+
+
+// Fonts
+
+
+
+$f-opensanscondensedbold:'open_sans_condensedbold',sans-serif;
+$f-bebasneue:'bebas_neueregular', sans-serif;
+$f-asapregular:'asapregular', sans-serif;
+$f-asapbold:'asapbold', sans-serif;
+$f-jurabold:'jurabold', serif;
+$f-juraregular:'juraregular', serif;
+
+
+$f-topnav: $f-asapregular;
+$c-topnav: #616161;
+
+
+$f-basefont:$f-asapregular;
+
+$f-text:$f-basefont;
+$f-text-size: 12px;
+$f-text-lh: 1.2;
+
+$schatten-text: 3px 3px 1px rgba(0, 0, 0, 0.8);
+
+$schatten-nach-oben: 0px -3px 7px rgba(50, 50, 50, 0.4);
+$schatten-nach-unten: 0px 3px 7px rgba(50, 50, 50, 0.4);
+
+
+
+//$round-to-nearest-half-line:true;
+ 
+

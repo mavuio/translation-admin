@@ -1,0 +1,33 @@
+body {
+  //@include baseline-grid-background(20px,#ddd);
+  
+    background: $c-background;
+}
+
+
+.notfooter-wrap
+{
+  background:$c-background;
+  min-height:700px;
+  border-color:1px solid green;
+}
+
+
+ul,li {
+    margin: 0;
+    padding: 0;
+}
+::-moz-selection {
+    background: $c-color1;
+    text-shadow: none;
+}
+::selection {
+    background: $c-color1;
+    text-shadow: none;
+}
+
+
+.group
+{
+  @include clearfix;
+}

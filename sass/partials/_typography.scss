@@ -1,0 +1,48 @@
+div,p,td {
+   @include adjust-font-size-to($f-text-size);
+   line-height:1.5;
+   color:$c-text;
+}
+p {
+  margin:0px;
+}
+
+h2 {
+  
+  @include adjust-font-size-to(22px);
+  line-height:1.2;
+  color:$c-color1;
+  margin-bottom:1em;
+  
+  &:first-child
+  {
+    margin-top:0px;
+  }
+}
+
+h3 {
+  @include adjust-font-size-to($f-text-size);
+  line-height:1.2;
+  color:$c-color1;
+  margin-bottom:0;
+  &:first-child
+  {
+    margin-top:0px;
+  }
+}
+
+a {
+  color:$c-text;
+  text-decoration:underline;
+}
+
+
+a[href$=".pdf"]
+{
+//  text-decoration:none;
+//  &:hover {
+//    text-decoration:underline;
+//  }
+  i {font-size:1.4em;}
+}
+
