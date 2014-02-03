@@ -23,7 +23,6 @@ angular.module("wien-import").directive "wienImportLocation", ->
         autoresize_max_height:600
 
 
-
       $scope.associate_location = (item,l) ->
         $http.post($scope.settings.baseUrl + "ng-associate-location",
           foreign_loc:l
