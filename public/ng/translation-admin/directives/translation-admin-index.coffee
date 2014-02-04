@@ -15,8 +15,9 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
     $scope.available_languages=[]
 
     $scope.query=
-      'lang1':'en'
-      'lang2':'de'
+      'lang1':'de'
+      'lang2':'en'
+
 
 
 
