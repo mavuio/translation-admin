@@ -1,0 +1,83 @@
+<div class='translation-admin-item ' ng-class='item.expanded?"expanded":"collapsed"'>
+
+    <div class='translation-admin-item-container'>
+
+        <div class='row table-like'>
+
+
+            <div class="span-2 alpha">
+                <div>
+
+                    <span class="kcateg">
+                        <span class="kgroup">{{item.namespace}}</span>/
+                        <span class="knamespace">{{item.group}}</span>
+                    </span>
+                    <span class="ktitle">{{item.item}}</span>
+                </div>
+            </div>
+            <div class="span-4 ">
+                <div>{{item.lang1_text}}</div>
+            </div>
+            <div class="span-4 ">
+                <div>{{item.lang2_text}}</div>
+            </div>
+            <div class='span-2 omega align-right'>
+
+                <button class="btn btn-s editbutton" ng-class="item.expanded?'btn-default':'btn-default'" type="button" ng-click='toggleItem(item,$event)'>
+
+                    <span ng-show='item.expanded'><i class="fa fa-times"></i>
+                    </span>
+                    <span ng-hide='item.expanded'><i class="fa fa-pencil"></i>
+                    </span>
+                </button>
+
+            </div>
+        </div>
+        <div class='row table-like editrow' ng-if='item.expanded'>
+            <div class="span-6 alpha">
+
+                <div ng-show='item.record1.loading' class='alert alert-warning'>
+                    <img src="/Mwerkzeug/images/loading.gif" width="16" height="11" alt="Loading">
+                </div>
+
+                <div ng-hide='item.record1.loading'>
+
+
+                    <div ng-if="item.type==='html'">
+                        <textarea ui-tinymce="tinymceOptions" class="form-control" ng-model='item.record1.text' />
+                    </div>
+                    <textarea ng-if="item.type==='multiline'" class="form-control" ng-model='item.record1.text' rows="5" />
+
+                    <input type='text' ng-if="item.type==='text'" class="form-control" ng-model='item.record1.text' />
+
+
+                </div>
+
+            </div>
+            <div class="span-6 omega ">
+                <div ng-show='item.record2.loading' class='alert alert-warning'>
+                    <img src="/Mwerkzeug/images/loading.gif" width="16" height="11" alt="Loading">
+                </div>
+
+                <div ng-hide='item.record2.loading'>
+                    <div ng-if="item.type==='html'">
+                        <textarea ui-tinymce="tinymceOptions" class="form-control" ng-model='item.record2.text' />
+                    </div>
+
+                    <textarea ng-if="item.type==='multiline'" class="form-control" ng-model='item.record2.text' rows="5" />
+
+                    <input type='text' ng-if="item.type==='text'" class="form-control" ng-model='item.record2.text' />
+
+                </div>
+
+                <div>&nbsp;</div>
+
+                <div class="align-right">
+                    <button class="btn btn-primary" ng-click='saveItem(item,$index)'><i class="fa fa-arrow-right"> Speichern</i></button>
+                </div>
+                <div>&nbsp;</div>
+
+            </div>
+        </div>
+    </div>
+</div>

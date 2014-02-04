@@ -21,6 +21,10 @@ css_dir = "public/css"
 sass_dir = "sass"
 images_dir = "public/images"
 javascripts_dir = "public/javascript"
+fonts_dir = "/"
+
+
+
 
 
 

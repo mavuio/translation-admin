@@ -1,0 +1,49 @@
+<div class='translation-admin-index'>
+    <div class='queue'>
+
+        <div class='translation-admin-search-container'>
+            <form ng-submit='refreshListing()'>
+                <div class='span-5 form-inline '>
+
+                    <input style='width:200px' type="text" class="form-control" ng-model="query.keyword">
+                    <button class="btn btn-default" type="submit">Go!</button>
+
+                </div>
+                <div class='span-1'>
+                    &nbsp;
+                </div>
+            </form>
+        </div>
+
+
+
+        <ul class='itemlist'>
+            <li ng-show='listmode=="loading"' class='alert alert-warning'>
+                <img src="/Mwerkzeug/images/loading.gif" width="16" height="11" alt="Loading">
+            </li>
+            <li ng-show='listmode=="empty"' class='alert alert-warning'>Zu Ihrer Suchanfrage wurden keine Ergebnisse gefunden</li>
+
+            <li>
+                <div class='translation-admin-item-container'>
+                    <div class='row table-like header'>
+                        <div class="span-2 alpha">
+                            <div>key</div>
+                        </div>
+                        <div class="span-4 ">
+                            <div>{{query.lang1}}</div>
+                        </div>
+                        <div class="span-4 ">
+                            <div>{{query.lang2}}</div>
+                        </div>
+                        <div class='span-2 omega align-right'>
+                        </div>
+                    </div>
+            </li>
+            <li class='item' ng-repeat='item in items'>
+                <div translation-admin-item ng-base-url="{{ngBaseUrl}}"></div>
+            </li>
+
+        </ul>
+
+        </div>
+    </div>

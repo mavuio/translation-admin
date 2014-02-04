@@ -1,5 +1,5 @@
 
-<div ng-app="translation-admin" ng-init="init({baseUrl:'<?php echo URL::current(); ?>/../'})"
+<div ng-app="translation-admin" ng-init="init({baseUrl:'{{ URL::current() }}'})"
     ng-controller='MainCtrl'
     >
 
@@ -16,7 +16,7 @@
         <h1>Wientourismus - match Locations</h1>
         <div>&nbsp;</div>
 
-        <div translation-admin-index>
+        <div translation-admin-index >
 
 
 

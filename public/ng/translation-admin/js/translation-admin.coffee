@@ -55,10 +55,7 @@ app.controller 'MainCtrl', ['$scope', '$location', '$http', '$filter', '$sce', '
       pathparts=$location.path().split('/');
       # console.log "pp" , pathparts  if window.console and console.log
 
-      eventid=null
-      showtimeid=null
       itemid=pathparts[1] if pathparts.length
-      showtimeid=pathparts[2] if pathparts.length>1
 
       # console.log "pathparts" , pathparts.length,pathparts, itemid  if window.console and console.log
 
@@ -68,7 +65,6 @@ app.controller 'MainCtrl', ['$scope', '$location', '$http', '$filter', '$sce', '
           if not $scope.app.currentExpandedItem
             console.log 'expand_item', itemid  if window.console and console.log and  itemid
             $scope.$broadcast 'expand_item', itemid if itemid
-            $scope.$broadcast 'expand_showtime', itemid, showtimeid if showtimeid
         1000
        )
 
