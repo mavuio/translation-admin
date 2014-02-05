@@ -235,6 +235,8 @@ public function postNgItems()
 
   $query->where('language_entries.language_id', '=',$lang1_id);
 
+  $query->whereIn('language_entries.group', ['texts']);
+
   if($single_id>0)
   {
     $query->where('language_entries.id','=',$single_id);

@@ -10,10 +10,9 @@
     <div class='main-container'>
 
 
-        <button class="btn btn-primary" type="button"><i class="fa fa-arrow-right"></i> OK</button>
 
         <div>&nbsp;</div>
-        <h1>Wientourismus - match Locations</h1>
+        <h1>Texte übersetzen</h1>
         <div>&nbsp;</div>
 
         <div translation-admin-index >
