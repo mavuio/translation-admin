@@ -2,7 +2,7 @@
 
     <div class='translation-admin-item-container'>
 
-        <div class='row table-like'>
+        <div class='row table-like' ng-dblclick='toggleItem(item,$event)'>
 
 
             <div class="span-2 alpha">
@@ -43,7 +43,7 @@
                 <div ng-hide='item.record1.loading'>
 
 
-                    <div ng-if="item.type==='html'">
+                    <div ng-if="item.type==='html' && !item.record1.loading">
                         <textarea ui-tinymce="tinymceOptions" class="form-control" ng-model='item.record1.text' />
                     </div>
                     <textarea ng-if="item.type==='multiline'" class="form-control" ng-model='item.record1.text' rows="5" />
@@ -60,7 +60,7 @@
                 </div>
 
                 <div ng-hide='item.record2.loading'>
-                    <div ng-if="item.type==='html'">
+                    <div ng-if="item.type==='html' && !item.record2.loading ">
                         <textarea ui-tinymce="tinymceOptions" class="form-control" ng-model='item.record2.text' />
                     </div>
 

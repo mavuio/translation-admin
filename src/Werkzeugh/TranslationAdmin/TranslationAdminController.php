@@ -277,12 +277,13 @@ public function postNgItems()
     $val['lang1_text']=str_limit(strip_tags($val['lang1_text']));
     $val['lang2_text']=str_limit(strip_tags($val['lang2_text']));
 
-    if(preg_match('#(html|richtext)#',$val['group'].$val['item']))
+    if(preg_match('#(html|text)#',$val['group'].$val['item']))
       $val['type']='html';
-    elseif(preg_match('#(text)#',$val['group'].$val['item']))
+    elseif(preg_match('#(multiline)#',$val['group'].$val['item']))
       $val['type']='multiline';
     else
       $val['type']='text';
+    
     $ret['items'][]=$val;
   }
 
