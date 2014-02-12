@@ -1,6 +1,6 @@
 app = angular.module "translation-admin", ['ui.tinymce']
 
-app.controller 'MainCtrl', ['$scope', '$location', '$http', '$filter', '$sce', '$timeout',
+app.controller 'TranslationAdminController', ['$scope', '$location', '$http', '$filter', '$sce', '$timeout',
 ($scope, $location, $http, $filter, $sce, $timeout) ->
   $scope.app = {}
   $scope.query = {}

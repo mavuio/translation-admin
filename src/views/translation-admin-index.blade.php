@@ -1,28 +1,28 @@
-
-<div ng-app="translation-admin" ng-init="init({baseUrl:'{{ URL::current() }}'})"
-    ng-controller='MainCtrl'
-    >
+<div id='translation-admin' ng-init="init({baseUrl:'{{ URL::current() }}'})" ng-controller='TranslationAdminController'>
 
 
-<div class='main-outer'>
+    <div class='main-outer'>
 
 
-    <div class='main-container'>
+        <div class='main-container'>
 
 
 
-        <div>&nbsp;</div>
-        <h1>Texte übersetzen</h1>
-        <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <h1>Texte übersetzen</h1>
+            <div>&nbsp;</div>
 
-        <div translation-admin-index >
-
-
+            <div translation-admin-index>
 
 
+            </div>
         </div>
     </div>
-</div>
+
+
+    <script>
+            angular.bootstrap(document.getElementById("translation-admin"),['translation-admin']);
+    </script>
 
 
 </div>

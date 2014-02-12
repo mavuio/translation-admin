@@ -3,7 +3,7 @@ var app;
 
 app = angular.module("translation-admin", ['ui.tinymce']);
 
-app.controller('MainCtrl', [
+app.controller('TranslationAdminController', [
   '$scope', '$location', '$http', '$filter', '$sce', '$timeout', function($scope, $location, $http, $filter, $sce, $timeout) {
     $scope.app = {};
     $scope.query = {};
