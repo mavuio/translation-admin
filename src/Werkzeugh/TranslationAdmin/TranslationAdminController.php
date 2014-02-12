@@ -1,7 +1,7 @@
 <?php namespace Werkzeugh\TranslationAdmin;
 
-use  BaseController,Redirect, View, Input, Response;
-use L_DB as DB;
+use BaseController,Redirect, View, Input, Response;
+use Illuminate\Support\Facades\DB;
 
 
 class TranslationAdminController extends BaseController {

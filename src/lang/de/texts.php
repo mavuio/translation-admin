@@ -13,7 +13,7 @@ return array(
   |
   */
 
-  'welcome' => 'Willkommen im Ticket-reich',
+  'welcome' => 'Willkommen',
 
 
 );
