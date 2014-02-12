@@ -13,7 +13,7 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
     $scope.listmode='loading';
     $scope.items=[]
     $scope.available_languages=[]
-
+    $scope.groups = []
     $scope.query=
       'lang1':'de'
       'lang2':'en'
@@ -29,6 +29,13 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
       else
         return null
 
+    $scope.fetchGroups = ->
+      $http.post($scope.settings.baseUrl + "/ng-groups",
+        query: $scope.query
+      ).then (response) ->
+        $scope.groups = response.data.items
+      
+      
     $scope.refreshListing = ->
       $scope.updateUrl()
 
@@ -44,5 +51,6 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
         $scope.updateQueryFromUrl() #triggers loading of event-detail
 
     $scope.refreshListing()
+    $scope.fetchGroups()
 
   ]

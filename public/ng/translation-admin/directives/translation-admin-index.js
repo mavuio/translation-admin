@@ -13,6 +13,7 @@ angular.module("translation-admin").directive("translationAdminIndex", function(
         $scope.listmode = 'loading';
         $scope.items = [];
         $scope.available_languages = [];
+        $scope.groups = [];
         $scope.query = {
           'lang1': 'de',
           'lang2': 'en'
@@ -29,6 +30,13 @@ angular.module("translation-admin").directive("translationAdminIndex", function(
           } else {
             return null;
           }
+        };
+        $scope.fetchGroups = function() {
+          return $http.post($scope.settings.baseUrl + "/ng-groups", {
+            query: $scope.query
+          }).then(function(response) {
+            return $scope.groups = response.data.items;
+          });
         };
         $scope.refreshListing = function() {
           $scope.updateUrl();
@@ -47,7 +55,8 @@ angular.module("translation-admin").directive("translationAdminIndex", function(
             return $scope.updateQueryFromUrl();
           });
         };
-        return $scope.refreshListing();
+        $scope.refreshListing();
+        return $scope.fetchGroups();
       }
     ]
   };

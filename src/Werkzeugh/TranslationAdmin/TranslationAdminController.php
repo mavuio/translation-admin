@@ -235,7 +235,6 @@ public function postNgItems()
 
   $query->where('language_entries.language_id', '=',$lang1_id);
 
-  $query->whereIn('language_entries.group', ['texts','labels']);
 
   if($single_id>0)
   {
@@ -256,6 +255,13 @@ public function postNgItems()
         '%'.$keyword.'%',
         ]);
     }
+    
+    $group=trim(Input::get('query.group'));
+    if($group)
+    {
+        $query->where('language_entries.group','=',$group);
+    }
+    
 
   }
 
@@ -271,9 +277,9 @@ public function postNgItems()
     $val['lang1_text']=str_limit(strip_tags($val['lang1_text']));
     $val['lang2_text']=str_limit(strip_tags($val['lang2_text']));
 
-    if(preg_match('#(html|texts)#',$val['group']))
+    if(preg_match('#(html|richtext)#',$val['group'].$val['item']))
       $val['type']='html';
-    elseif(preg_match('#(reminders)#',$val['group']))
+    elseif(preg_match('#(text)#',$val['group'].$val['item']))
       $val['type']='multiline';
     else
       $val['type']='text';
@@ -291,5 +297,29 @@ public function postNgItems()
 
 }
 
+
+public function postNgGroups()
+{
+    $model = $this->languageEntryProvider->createModel();
+    
+    $query=DB::table($model->getTable());
+    $GLOBALS['debugsql']=1;
+
+    DB::connection()->setFetchMode(\PDO::FETCH_ASSOC);
+    $query->select('namespace','group')->distinct();
+    foreach ($query->get() as $row) {
+        if($row['namespace'] && $row['namespace']!='*')
+            $name="$row[namespace].$row[group]";
+        else
+            $name="$row[group]";
+            
+        $ret['items'][]=$name;
+    }
+    
+    $ret['status']='ok';
+
+
+    return Response::json($ret);
+}
 
 }

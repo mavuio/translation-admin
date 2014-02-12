@@ -3,12 +3,16 @@
 
         <div class='translation-admin-search-container'>
             <form ng-submit='refreshListing()'>
-                <div class='span-5 form-inline '>
+                <div class='span-7 form-inline '>
 
                     <input style='width:200px' type="text" class="form-control" ng-model="query.keyword">
+                    <select class="form-control" ng-model="query.group" ng-options="a as a for a in groups"
+                      ng-change='refreshListing()' />
                     <button class="btn btn-default" type="submit">Go!</button>
 
                 </div>
+
+
                 <div class='span-1'>
                     &nbsp;
                 </div>
