@@ -27,7 +27,14 @@ app.controller('TranslationAdminController', [
           $location.path('');
         }
       }
-      return $location.search(q);
+      $location.search(q);
+      if (args.hash != null) {
+        if (args.hash === 'empty') {
+          return $location.hash('');
+        } else {
+          return $location.hash(args.hash);
+        }
+      }
     };
     $scope.$watch((function() {
       return $location.url();
@@ -43,7 +50,7 @@ app.controller('TranslationAdminController', [
       _ref = $scope.query;
       for (key in _ref) {
         value = _ref[key];
-        if (key !== 'daterange' && key !== 'datestr') {
+        if (key === 'keyword') {
           params[key] = value;
         }
       }
@@ -60,25 +67,31 @@ app.controller('TranslationAdminController', [
         val = newquery[key];
         $scope.query[key] = (val === "null" ? null : val);
       }
+      pathparts = $location.path().split('/');
+      if (pathparts.length && isNaN(pathparts[1])) {
+        $scope.query.category = pathparts[1];
+      }
       currentQuerystring = JSON.stringify($scope.getQueryParams());
       if ($scope.oldQueryString !== currentQuerystring) {
+        if (window.console && console.log) {
+          console.log("➜ update_listing", null);
+        }
         $scope.$broadcast('update_listing');
       }
       $scope.oldQueryString = currentQuerystring;
-      pathparts = $location.path().split('/');
-      if (pathparts.length) {
-        itemid = pathparts[1];
+      itemid = $location.hash();
+      if (itemid && !isNaN(itemid)) {
+        return $timeout(function() {
+          if (!$scope.app.currentExpandedItem) {
+            if (window.console && console.log && itemid) {
+              console.log('expand_item', itemid);
+            }
+            if (itemid) {
+              return $scope.$broadcast('expand_item', itemid);
+            }
+          }
+        }, 1000);
       }
-      return $timeout(function() {
-        if (!$scope.app.currentExpandedItem) {
-          if (window.console && console.log && itemid) {
-            console.log('expand_item', itemid);
-          }
-          if (itemid) {
-            return $scope.$broadcast('expand_item', itemid);
-          }
-        }
-      }, 1000);
     };
     $scope.startsWith = function(str1, str2) {
       var ret;

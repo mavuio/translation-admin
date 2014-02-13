@@ -7,7 +7,7 @@
 
                     <input style='width:200px' type="text" class="form-control" ng-model="query.keyword" placeholder="Suche ">
                     in
-                    <select class="form-control" ng-model="query.filter" ng-options="item as (item.combined_name + ' (' + item.count + ')' ) for item in groups"
+                    <select class="form-control" ng-model="query.category" ng-options="item.combined_name as (item.combined_name + ' (' + item.count + ')' ) for item in groups"
                       ng-change='refreshListing()'>
                       <option value=""></option>
                     </select>

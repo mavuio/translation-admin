@@ -7,6 +7,7 @@ app.controller 'TranslationAdminController', ['$scope', '$location', '$http', '$
   $scope.settings = {} #for legacy stuff
   $scope.app.currentExpandedItem=null;
 
+
   $scope.updateUrl = (args={}) ->
      q=$scope.getQueryParams();
      console.log "updateUrl" , args, q  if window.console and console.log
@@ -18,7 +19,11 @@ app.controller 'TranslationAdminController', ['$scope', '$location', '$http', '$
          $location.path('')
      $location.search q
      # $location.path '/213123/tickets'
-     # $location.hash 'abc'
+     if args.hash?
+       if args.hash is 'empty'
+         $location.hash ''
+        else
+         $location.hash args.hash
 
   $scope.$watch (->
     $location.url()
@@ -29,11 +34,8 @@ app.controller 'TranslationAdminController', ['$scope', '$location', '$http', '$
   $scope.getQueryParams = ->
     params={}
     for key, value of $scope.query
-       params[key]=value unless key in ['daterange','datestr']
+       params[key]=value if key in ['keyword']
     params
-
-
-
 
 
   $scope.updateQueryFromUrl = ->
@@ -46,35 +48,36 @@ app.controller 'TranslationAdminController', ['$scope', '$location', '$http', '$
       #   $scope.query.daterange.startDate=new moment(newquery.date1)
       #   $scope.query.daterange.endDate=new moment(newquery.date2)
 
+      pathparts=$location.path().split('/');
+
+      if pathparts.length and isNaN(pathparts[1])
+        $scope.query.category=pathparts[1]
+
       currentQuerystring= JSON.stringify $scope.getQueryParams()
       if $scope.oldQueryString isnt currentQuerystring
+        console.log "➜ update_listing" , null  if window.console and console.log
+
         $scope.$broadcast 'update_listing'
       $scope.oldQueryString=currentQuerystring
 
       #check path
-      pathparts=$location.path().split('/');
       # console.log "pp" , pathparts  if window.console and console.log
 
-      itemid=pathparts[1] if pathparts.length
-
-      # console.log "pathparts" , pathparts.length,pathparts, itemid  if window.console and console.log
-
-      #expand if needed
-      $timeout(
-        ()->
-          if not $scope.app.currentExpandedItem
-            console.log 'expand_item', itemid  if window.console and console.log and  itemid
-            $scope.$broadcast 'expand_item', itemid if itemid
-        1000
-       )
-
+      itemid=$location.hash()
+      if itemid and !isNaN(itemid)
+        $timeout(
+          ()->
+            if not $scope.app.currentExpandedItem
+              console.log 'expand_item', itemid  if window.console and console.log and  itemid
+              $scope.$broadcast 'expand_item', itemid if itemid
+          1000
+         )
 
 
   $scope.startsWith = (str1,str2) ->
     ret=str1.slice(0, str2.length) == str2;
     # console.log " #{str1} startsWith  #{str2} =#{ret}",str1.slice(0, str2.length),str1   if window.console and console.log
     ret
-
 
   $scope.init = (settings) ->
     $scope.settings=settings

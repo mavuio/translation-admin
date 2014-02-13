@@ -39,7 +39,7 @@ angular.module("translation-admin").directive "translationAdminItem", ->
             item.record2=itemdata.record2;
 
         $scope.app.currentExpandedItem = item
-        $scope.updateUrl path:'/'+item.lang1_id
+        $scope.updateUrl hash:item.lang1_id
         $timeout(
           ()->
             angular.element('.savebutton').focus()

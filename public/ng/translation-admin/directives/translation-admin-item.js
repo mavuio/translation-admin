@@ -50,7 +50,7 @@ angular.module("translation-admin").directive("translationAdminItem", function()
             }
             $scope.app.currentExpandedItem = item;
             $scope.updateUrl({
-              path: '/' + item.lang1_id
+              hash: item.lang1_id
             });
             $timeout(function() {
               return angular.element('.savebutton').focus();

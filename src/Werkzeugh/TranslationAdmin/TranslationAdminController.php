@@ -261,16 +261,24 @@ public function postNgItems()
         ]);
     }
 
-    $group=trim(Input::get('query.filter.group'));
-    if($group)
+    $category=trim(Input::get('query.category'));
+    if($category)
     {
-        $query->where('language_entries.group','=',$group);
-    }
+        if(!strstr($category,'.'))
+            $category='*.'.$category;
+        
+        list($namespace,$group)=explode('.',$category);
+    
+        if($group)
+        {
+            $query->where('language_entries.group','=',$group);
+        }
 
-    $namespace=trim(Input::get('query.filter.namespace'));
-    if($namespace)
-    {
-        $query->where('language_entries.namespace','=',$namespace);
+        if($namespace)
+        {
+            $query->where('language_entries.namespace','=',$namespace);
+        }
+        
     }
 
 

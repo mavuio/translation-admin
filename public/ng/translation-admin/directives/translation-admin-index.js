@@ -8,16 +8,15 @@ angular.module("translation-admin").directive("translationAdminIndex", function(
     link: function(scope, element, attrs) {},
     controller: [
       "$scope", "$element", "$attrs", "$timeout", "$filter", "$http", "$q", function($scope, $element, $attrs, $timeout, $filter, $http, $q) {
-        $scope.items = {};
         $scope.ngBaseUrl = $attrs.ngBaseUrl;
-        $scope.listmode = 'loading';
-        $scope.items = [];
         $scope.available_languages = [];
         $scope.groups = [];
-        $scope.query = {
-          'lang1': 'de',
-          'lang2': 'en'
-        };
+        $scope.listmode = 'loading';
+        $scope.items = [];
+        $scope.allItems = [];
+        $scope.app.currentExpandedItem = null;
+        $scope.query.lang1 = 'de';
+        $scope.query.lang2 = 'en';
         $scope.getItemForId = function(id) {
           var filterFilter, res;
 
@@ -38,8 +37,23 @@ angular.module("translation-admin").directive("translationAdminIndex", function(
             return $scope.groups = response.data.items;
           });
         };
-        $scope.refreshListing = function() {
-          $scope.updateUrl();
+        $scope.refreshListing = function(page) {
+          var mypath;
+
+          if (page == null) {
+            page = 1;
+          }
+          $scope.query.page = page;
+          mypath = 'empty';
+          if ($scope.query.category) {
+            mypath = '/' + $scope.query.category;
+          }
+          if (window.console && console.log) {
+            console.log("refreshListing", $scope.query);
+          }
+          $scope.updateUrl({
+            path: mypath
+          });
           return $http.post($scope.settings.baseUrl + "/ng-items", {
             query: $scope.query
           }).then(function(response) {
@@ -55,8 +69,15 @@ angular.module("translation-admin").directive("translationAdminIndex", function(
             return $scope.updateQueryFromUrl();
           });
         };
-        $scope.refreshListing();
-        return $scope.fetchGroups();
+        $scope.updateQueryFromUrl();
+        $scope.$on('update_listing', function(event) {
+          if (window.console && console.log) {
+            console.log("received uodate listing", null);
+          }
+          return $scope.refreshListing();
+        });
+        $scope.fetchGroups();
+        return $scope.refreshListing();
       }
     ]
   };
@@ -64,7 +85,7 @@ angular.module("translation-admin").directive("translationAdminIndex", function(
 
 angular.module("translation-admin").filter("underscore_breaks", function($sce) {
   return function(input) {
-    return $sce.trustAsHtml(input.replace('_', '<wbr/>_'));
+    return $sce.trustAsHtml(input.replace(/_/g, '<wbr/>_'));
   };
 });
 

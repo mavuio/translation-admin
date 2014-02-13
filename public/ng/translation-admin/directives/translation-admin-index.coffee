@@ -8,16 +8,18 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
 
   controller: ["$scope", "$element", "$attrs", "$timeout", "$filter", "$http", "$q", ($scope, $element, $attrs, $timeout, $filter, $http, $q) ->
 
-    $scope.items={}
     $scope.ngBaseUrl=$attrs.ngBaseUrl
-    $scope.listmode='loading';
-    $scope.items=[]
     $scope.available_languages=[]
     $scope.groups = []
-    $scope.query=
-      'lang1':'de'
-      'lang2':'en'
 
+
+    $scope.listmode='loading';
+    $scope.items=[]
+    $scope.allItems=[]
+    $scope.app.currentExpandedItem=null;
+
+    $scope.query.lang1='de'
+    $scope.query.lang2='en'
 
 
 
@@ -29,6 +31,7 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
       else
         return null
 
+
     $scope.fetchGroups = ->
       $http.post($scope.settings.baseUrl + "/ng-groups",
         query: $scope.query
@@ -36,8 +39,13 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
         $scope.groups = response.data.items
 
 
-    $scope.refreshListing = ->
-      $scope.updateUrl()
+    $scope.refreshListing = (page = 1) ->
+      $scope.query.page=page
+      mypath='empty'
+      mypath='/'+$scope.query.category if $scope.query.category
+      console.log "refreshListing" , $scope.query  if window.console and console.log
+
+      $scope.updateUrl path:mypath
 
       $http.post($scope.settings.baseUrl + "/ng-items",
         query: $scope.query
@@ -50,11 +58,19 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
         # $scope.toggleItem $scope.items[0]  if $scope.items.length is 1
         $scope.updateQueryFromUrl() #triggers loading of event-detail
 
-    $scope.refreshListing()
+
+    $scope.updateQueryFromUrl() # triggers loading
+
+    $scope.$on 'update_listing', (event)->
+      console.log "received uodate listing" , null  if window.console and console.log
+
+      $scope.refreshListing()
+
     $scope.fetchGroups()
+    $scope.refreshListing()
 
   ]
 
 angular.module("translation-admin").filter "underscore_breaks", ($sce)->
   (input) ->
-    $sce.trustAsHtml(input.replace '_', '<wbr/>_')
+    $sce.trustAsHtml(input.replace /_/g , '<wbr/>_')
