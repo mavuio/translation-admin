@@ -4,11 +4,10 @@
   // border-radius:5px;
   // margin:2em 0;
   // padding:2em;
-
   &.expanded {
-    background:#eee;
-    border-top:2px solid #009;
-    border-bottom:2px solid #009;
+    background: #eee;
+    border-top: 2px solid #009;
+    border-bottom: 2px solid #009;
   }
 }
 
@@ -38,15 +37,24 @@
 
 .translation-admin-item-container {
   .table-like {
-
-    .kcateg {font-size:0.8em}
-    .kgroup {color:#228888}
-    .knamespace {color:#339999}
-    .ktitle {display:block;font-weight: bold}
+    .kcateg {
+      font-size: 0.8em;
+    }
+    .kgroup {
+      color: #228888;
+    }
+    .knamespace {
+      color: #339999;
+    }
+    .ktitle {
+      display: block;
+      font-weight: bold;
+      font-size: 14px;
+    }
 
     &.header {
       font-weight: bold;
-      background:#eee;
+      background: #eee;
     }
     > div {
       border-right: 1px dotted #ccc;

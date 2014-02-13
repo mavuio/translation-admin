@@ -160,15 +160,20 @@ public function saveRecord($record,$record1=NULL)
     return FALSE;
 
 
-    $baserec->text=$record['text'];
+    $baserec->text=$this->cleanupTextFromEditor($record['text']);
     $baserec->locked=1;
     $baserec->save();
 
     return TRUE;
 
-
-
 }
+
+  public function cleanupTextFromEditor($txt)
+  {
+    preg_replace('#<p></p>#',$txt);
+
+    return $txt;
+  }
 
 
 public function postNgItems()
@@ -255,13 +260,19 @@ public function postNgItems()
         '%'.$keyword.'%',
         ]);
     }
-    
-    $group=trim(Input::get('query.group'));
+
+    $group=trim(Input::get('query.filter.group'));
     if($group)
     {
         $query->where('language_entries.group','=',$group);
     }
-    
+
+    $namespace=trim(Input::get('query.filter.namespace'));
+    if($namespace)
+    {
+        $query->where('language_entries.namespace','=',$namespace);
+    }
+
 
   }
 
@@ -283,7 +294,7 @@ public function postNgItems()
       $val['type']='multiline';
     else
       $val['type']='text';
-    
+
     $ret['items'][]=$val;
   }
 
@@ -302,21 +313,26 @@ public function postNgItems()
 public function postNgGroups()
 {
     $model = $this->languageEntryProvider->createModel();
-    
+
     $query=DB::table($model->getTable());
     $GLOBALS['debugsql']=1;
 
+    $lang1_id=$this->getAvailableLanguages()[Input::get('query.lang1').""]['id'];
+
+
     DB::connection()->setFetchMode(\PDO::FETCH_ASSOC);
-    $query->select('namespace','group')->distinct();
+
+    $query->select(DB::raw('`namespace`,`group`,count(item) as `count`'))->where('language_id','=',$lang1_id)->groupBy('namespace','group');
+
     foreach ($query->get() as $row) {
         if($row['namespace'] && $row['namespace']!='*')
-            $name="$row[namespace].$row[group]";
+            $row['combined_name']="$row[namespace].$row[group]";
         else
-            $name="$row[group]";
-            
-        $ret['items'][]=$name;
+            $row['combined_name']="$row[group]";
+
+        $ret['items'][]=$row;
     }
-    
+
     $ret['status']='ok';
 
 

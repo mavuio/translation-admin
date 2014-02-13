@@ -21,6 +21,7 @@ angular.module("translation-admin").directive "translationAdminItem", ->
       toolbar1: "bold italic | undo redo | link unlink | removeformat | code fullscreen",
       autoresize_min_height:100
       autoresize_max_height:600
+      forced_root_block : false
 
 
     $scope.toggleItem = (item, e) ->

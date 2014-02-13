@@ -24,7 +24,8 @@ angular.module("translation-admin").directive("translationAdminItem", function()
           plugins: ["code fullscreen contextmenu autoresize link"],
           toolbar1: "bold italic | undo redo | link unlink | removeformat | code fullscreen",
           autoresize_min_height: 100,
-          autoresize_max_height: 600
+          autoresize_max_height: 600,
+          forced_root_block: false
         };
         $scope.toggleItem = function(item, e) {
           var newval;

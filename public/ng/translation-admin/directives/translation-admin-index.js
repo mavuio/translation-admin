@@ -62,6 +62,12 @@ angular.module("translation-admin").directive("translationAdminIndex", function(
   };
 });
 
+angular.module("translation-admin").filter("underscore_breaks", function($sce) {
+  return function(input) {
+    return $sce.trustAsHtml(input.replace('_', '<wbr/>_'));
+  };
+});
+
 /*
 //@ sourceMappingURL=translation-admin-index.map
 */

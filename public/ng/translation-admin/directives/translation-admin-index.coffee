@@ -34,8 +34,8 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
         query: $scope.query
       ).then (response) ->
         $scope.groups = response.data.items
-      
-      
+
+
     $scope.refreshListing = ->
       $scope.updateUrl()
 
@@ -54,3 +54,7 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
     $scope.fetchGroups()
 
   ]
+
+angular.module("translation-admin").filter "underscore_breaks", ($sce)->
+  (input) ->
+    $sce.trustAsHtml(input.replace '_', '<wbr/>_')

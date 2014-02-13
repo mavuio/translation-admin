@@ -12,7 +12,7 @@
                         <span class="kgroup">{{item.namespace}}</span>/
                         <span class="knamespace">{{item.group}}</span>
                     </span>
-                    <span class="ktitle">{{item.item}}</span>
+                    <span class="ktitle" ng-bind-html="item.item | underscore_breaks"></span>
                 </div>
             </div>
             <div class="span-4 ">
