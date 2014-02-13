@@ -54,7 +54,6 @@ angular.module("translation-admin").directive "translationAdminItem", ->
       $scope.saveDetailsForItem(item.record1,item.record2).then (responsedata)->
         angular.copy(responsedata.item,item);
         $element.closest('div.editrow').slideUp 500, ()->
-        $scope.toggleItem($scope.items[idx + 1],null)
 
     $scope.saveDetailsForItem = (record1,record2) ->
       $http.post($scope.settings.baseUrl + "/ng-save-item",

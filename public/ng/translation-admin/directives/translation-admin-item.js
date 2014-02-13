@@ -66,8 +66,7 @@ angular.module("translation-admin").directive("translationAdminItem", function()
         $scope.saveItem = function(item, idx) {
           return $scope.saveDetailsForItem(item.record1, item.record2).then(function(responsedata) {
             angular.copy(responsedata.item, item);
-            $element.closest('div.editrow').slideUp(500, function() {});
-            return $scope.toggleItem($scope.items[idx + 1], null);
+            return $element.closest('div.editrow').slideUp(500, function() {});
           });
         };
         $scope.saveDetailsForItem = function(record1, record2) {
