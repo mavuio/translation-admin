@@ -159,9 +159,12 @@ public function saveRecord($record,$record1=NULL)
   else
     return FALSE;
 
+    $newtext=$this->cleanupTextFromEditor($record['text']);
 
-    $baserec->text=$this->cleanupTextFromEditor($record['text']);
-    $baserec->locked=1;
+    if($newtext<>$baserec->text)
+        $baserec->locked=1;
+
+    $baserec->text=$newtext;
     $baserec->save();
 
     return TRUE;
@@ -170,7 +173,6 @@ public function saveRecord($record,$record1=NULL)
 
   public function cleanupTextFromEditor($txt)
   {
-    preg_replace('#<p></p>#',$txt);
 
     return $txt;
   }
@@ -266,9 +268,9 @@ public function postNgItems()
     {
         if(!strstr($category,'.'))
             $category='*.'.$category;
-        
+
         list($namespace,$group)=explode('.',$category);
-    
+
         if($group)
         {
             $query->where('language_entries.group','=',$group);
@@ -278,7 +280,7 @@ public function postNgItems()
         {
             $query->where('language_entries.namespace','=',$namespace);
         }
-        
+
     }
 
 
