@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "listrouter.js",
+  "sourceRoot": "",
+  "sources": [
+    "listrouter.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA"
+}
