@@ -34,6 +34,7 @@ class TranslationAdminServiceProvider extends ServiceProvider {
 			return new LanguageEntryProvider($app['config']['waavi/translation::language_entry.model']);
 		});
 
+		$this->app->register('Werkzeugh\AngularTranslation\AngularTranslationServiceProvider');
 
 	 // { $x=$app; $x=htmlspecialchars(print_r($x,1));echo "\n<li>mwuits: <pre>$x</pre>"; }
 		// die('register me');
