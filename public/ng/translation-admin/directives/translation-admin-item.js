@@ -10,7 +10,6 @@ angular.module("translation-admin").directive("translationAdminItem", function()
       "$scope", "$element", "$attrs", "$timeout", "$transclude", "$http", "$q", function($scope, $element, $attrs, $timeout, $transclude, $http, $q) {
         $scope.$on('expand_item', function(event, id) {
           var item;
-
           item = $scope.getItemForId(id);
           if (item && !item.expanded) {
             $scope.toggleItem(item);
@@ -23,13 +22,13 @@ angular.module("translation-admin").directive("translationAdminItem", function()
           menubar: false,
           plugins: ["code fullscreen contextmenu autoresize link"],
           toolbar1: "bold italic | undo redo | link unlink | removeformat | code fullscreen",
+          relative_urls: false,
           autoresize_min_height: 100,
           autoresize_max_height: 600,
           forced_root_block: false
         };
         $scope.toggleItem = function(item, e) {
           var newval;
-
           newval = (item.expanded ? false : true);
           if ($scope.app.currentExpandedItem && $scope.app.currentExpandedItem !== item) {
             $scope.app.currentExpandedItem.expanded = false;
@@ -98,7 +97,3 @@ angular.module("translation-admin").directive("translationAdminItem", function()
     ]
   };
 });
-
-/*
-//@ sourceMappingURL=translation-admin-item.map
-*/

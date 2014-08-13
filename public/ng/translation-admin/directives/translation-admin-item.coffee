@@ -19,6 +19,7 @@ angular.module("translation-admin").directive "translationAdminItem", ->
       menubar: false
       plugins: [ "code fullscreen contextmenu autoresize link" ]
       toolbar1: "bold italic | undo redo | link unlink | removeformat | code fullscreen",
+      relative_urls : false
       autoresize_min_height:100
       autoresize_max_height:600
       forced_root_block : false
