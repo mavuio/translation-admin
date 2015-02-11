@@ -21,7 +21,8 @@ angular.module("translation-admin").directive "translationAdminIndex", ->
     $scope.query.lang1='de'
     $scope.query.lang2='en'
 
-
+    if $scope.settings.query
+      $scope.query=angular.extend($scope.query,$scope.settings.query)
 
     $scope.getItemForId = (id)->
       filterFilter = $filter('filter')

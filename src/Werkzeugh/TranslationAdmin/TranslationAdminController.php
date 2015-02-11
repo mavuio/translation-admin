@@ -42,10 +42,24 @@ class TranslationAdminController extends \BackendBaseControllerForPackages {
  public function getIndex()
  {
 
+   $c=[];
   
    $this->eco->setContentTemplate('mypkg::translation-admin-index');
 
-   return [];
+   $c['settingsAsJson']=json_encode($this->getSettings());
+   return $c;
+
+ }
+
+ public function getSettings()
+ {
+    $ret=[];     
+    $ret['baseUrl']=\URL::current();
+    if (preg_match('/([a-z][a-z]),([a-z][a-z])/', Input::get('langs'),$m)) {
+      $ret['query']['lang1']=$m[1];
+      $ret['query']['lang2']=$m[2];
+    }
+    return $ret;
  }
 
 

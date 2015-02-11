@@ -1,4 +1,4 @@
-<div id='translation-admin' ng-init="init({baseUrl:'{{ URL::current() }}'})" ng-controller='TranslationAdminController'>
+<div id='translation-admin' ng-init='init({{$settingsAsJson}})' ng-controller='TranslationAdminController'>
 
 
     <div class='main-outer'>
